@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Make Invoice</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="app-header/header :: header"></header>
+
+<div class="container mt-5 mb-5">
+    <h1>Make your invoice</h1>
+    <form action="/invoices/make" method="post">
+        <label>
+            <input type="text" name="amount" placeholder="Enter the amount" class="form-control" required autofocus>
+        </label><br>
+        <label>
+            <input type="text" name="currency" placeholder="DOLLARS, EURO, MD" class="form-control" required>
+        </label><br>
+        <button type="submit" class="btn btn-success">Make Invoice</button>
+    </form>
+</div>
+<footer class="text-muted">
+    <div class="container">
+        <p class="float-right">
+            <a href="/user/balance">Show your balance</a>
+        </p>
+    </div>
+</footer>
+</body>
+</html>
