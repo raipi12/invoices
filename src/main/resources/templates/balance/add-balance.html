@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Add Balance</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="app-header/header :: header"></header>
+
+<div class="container mt-5 mb-5">
+    <h1>Add balance to your account</h1>
+    <form action="/user/balance/add" method="post">
+        <label>
+            <input type="text" name="amount" placeholder="Enter the amount" class="form-control" required autofocus>
+        </label><br>
+        <label>
+            <input type="text" name="currency" placeholder="DOLLARS, EURO, MD" class="form-control" required>
+        </label><br>
+        <button type="submit" class="btn btn-success">Add Amount</button>
+    </form>
+</div>
+</body>
+</html>
