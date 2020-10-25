@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Invoices</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="app-header/header :: header"></header>
+
+<div class="container mt-5">
+    <form action="/invoices/make" method="get">
+        <h1>All your invoices is here
+            <button type="submit" class="btn btn-success float-right">Make Invoice</button>
+        </h1>
+    </form>
+    <div th:each="invoice : ${invoices}" class="alert alert-info mt-2">
+        <h4 th:text="'Invoice Name:  ' + ${invoice.invoiceName}"></h4>
+        <p th:text="'Remainder:  ' + ${invoice.remainder}"></p>
+        <p th:text="'Currency:  ' + ${invoice.currency}"></p>
+        <p th:text="'Date-Time:  ' + ${invoice.time}"></p>
+        <form th:action="'/invoices/remove/' + ${invoice.invoice_id}" method="post">
+            <button class="btn btn-warning" type="submit">Delete</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
