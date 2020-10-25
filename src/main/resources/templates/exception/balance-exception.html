@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Balance Exception</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="app-header/header :: header"></header>
+
+<div class="container mt-5">
+    <h3>You do not have enough balance</h3>
+    <p><a href="/user/balance/add">Add Balance</a></p>
+</div>
+</body>
+</html>
