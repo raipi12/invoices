@@ -4,15 +4,13 @@ import invoices.task.model.User;
 import invoices.task.model.source.Currency;
 import invoices.task.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/user")
 public class UserController {
     private final UserService userService;
 
@@ -21,29 +19,29 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/user/balance")
+    @GetMapping("/balance")
     public String showBalance(Model model){
         List<User> users = userService.findAll();
 
-        if (users.size() == 0){
+        if (users.size() == 0)
             return "exception/balance-exception";
-        }
+
         User user = users.get(users.size() - 1);
 
-        Double balance = user.getBalance();
+        double balance = Math.round(user.getBalance() * 100) / 100.0;
 
         model.addAttribute("balance", balance);
         return "balance/balance";
     }
-    @GetMapping("/user/balance/add")
+    @GetMapping("/balance/add")
     public String addBalanceParam(){
         return "balance/add-balance";
     }
-    @PostMapping("/user/balance/add")
+    @PostMapping("/balance/add")
     public String addBalance(@RequestParam Double amount, @RequestParam Currency currency){
 
         if(amount < 0 || currency == null)
-            return "redirect:/user/balance";
+            return "exception/invoice-exception";
         else if(currency == Currency.EURO)
             amount *= Currency.EURO.getExchangeRate();
         else if (currency == Currency.DOLLARS)
