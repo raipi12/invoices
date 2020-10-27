@@ -4,12 +4,13 @@ import invoices.task.model.User;
 import invoices.task.model.source.Currency;
 import invoices.task.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
